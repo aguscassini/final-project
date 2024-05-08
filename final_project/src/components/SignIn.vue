@@ -1,19 +1,27 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserStore } from '../stores/user.js'
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore()
+const router = useRouter();
 
 const email = ref('')
 const password = ref('')
 
+async function checkUser(email, password) {
+  try {
+    await userStore.signIn(email, password); 
+    router.push({ path: '/' });
+  } catch (error) {
+    console.error('Error during sign-in:', error);
+  }
+}
 
-
-    
 </script>
 
 <template>
-  <form class="container" @submit.prevent="userStore.signIn(email, password)">
+  <form class="container" @submit.prevent="checkUser(email, password)">
     <h1>Sign In</h1>
     <div>
       <input v-model="email" type="email" placeholder="Email" />
@@ -23,6 +31,7 @@ const password = ref('')
     </div>
     <div>
       <button type="submit">Log In</button>
+      <p></p>
     </div>
   </form>
 </template>

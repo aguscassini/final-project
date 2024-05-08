@@ -13,15 +13,30 @@ function toggleUser() {
   <section>
     <article v-if="hasUser">
       <SignIn></SignIn>
-      <p @click="toggleUser">I don't have an account </p>
+      <div>
+      <button @click="toggleUser"> I don't have an account</button>
+    </div>
     </article>
     <article v-else>
       <SignUp></SignUp>
-      <p @click="toggleUser"> I already have an account</p>
+    <div >
+      <button @click="toggleUser"> I already have an account </button>
+    </div>
     </article>
   </section>
 </template>
 
 <style scoped>
 
+
+
+
+
+
+
+button{
+  border:none;
+  background-color: transparent;
+  font-size: 12px;
+}
 </style>

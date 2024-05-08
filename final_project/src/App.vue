@@ -31,17 +31,6 @@ onMounted(async () => {
   }
 })
 
-/*
-const ejemplo = {
-  nombre: "Agustina",
-  apellidos: "Ninguno",
-  ubicacion: {
-    natal: "Argentina",
-    viviendo: "Barcelona"
-  }
-}
 
-ejemplo.ubicacion.natal
-*/
 </script>
 

@@ -1,8 +1,12 @@
 <script setup>
+import NavBar from '../components/NavBar.vue'
+
+
 </script>
 
 <template>
-    <h1>Componente Dashboard</h1>
+    <NavBar></NavBar>
+    <h1>Welcome</h1>
 </template>
 
 <style scoped>
