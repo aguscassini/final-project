@@ -1,78 +1,52 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref} from 'vue'
 import { useTaskStore } from '../stores/task.js'
-import { supabase } from '../supabase'
-import { useUserStore } from '@/stores/user'
-import router from '@/router'
+import { storeToRefs } from 'pinia'
+import TaskCard from './TaskCard.vue'
 
-const tasks = ref([])
+
 const newTaskTitle = ref('')
 const newTaskDescription = ref('')
-const userStore = useUserStore()
+const taskStore = useTaskStore ()
+const {tasks} = storeToRefs(taskStore)
 
-async function fetchTasks() {
-  const { data: fetchedTasks } = await supabase
-    .from('tasks')
-    .select('*')
-    .order('id', { ascending: false })
-  tasks.value = fetchedTasks || []
+
+
+
+const newSubmitTask = async () => {
+  await taskStore.submitTask(newTaskTitle.value, newTaskDescription.value)
+  newTaskTitle.value = ""
+  newTaskDescription.value = ""
+  await taskStore.fetchTasks()
 }
 
-onMounted(fetchTasks)
-
-async function editTask(task) {
-  // Lógica para editar la tarea
+async function deleteTask(taskId) {
+  await taskStore.deleteTask(taskId)
 }
 
-async function deleteTask(task) {
-  // Lógica para eliminar la tarea
-}
 
-async function submitTask() {
-  if (newTaskTitle.value.trim() !== '') {
-    const { data, error } = await supabase.from('tasks').insert([
-      {
-        user_id: userStore.user.data.user.id,
-        title: newTaskTitle.value,
-        description: newTaskDescription.value
-      }
-    ])
-    if (error) {
-      console.error('Error adding a task:', error.message)
-    } else {
-      newTaskTitle.value = ''
-      newTaskDescription.value = ''
-      await fetchTasks()
-      router.push('/')
-    }
-  }
-}
+
+
 </script>
 
 <template>
   <div>
     <h2>SUMMER 2024</h2>
-    <form @submit.prevent="submitTask">
+    <form @submit.prevent="newSubmitTask">
       <h3>New Task</h3>
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
       <textarea v-model="newTaskDescription" placeholder="Description"></textarea>
       <button type="submit">Add Task</button>
     </form>
-    <div v-if="tasks.length === 0">
+    <div v-if="!tasks">
       <p>No tasks available</p>
     </div>
     <div v-else class="task_design">
       <div v-for="task in tasks" :key="task.id" class="task-card">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
+        <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"></TaskCard>
       </div>
     </div>
   </div>
-
-  <!--  <div>
-          <button @click="editTask(task)">Editar</button>
-          <button @click="deleteTask(task)">Eliminar</button>
-        </div> -->
 </template>
 
 <style scoped>

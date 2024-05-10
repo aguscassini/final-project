@@ -10,7 +10,7 @@ const userStore = useUserStore()
   <nav >
     <ul class="nav-bar">
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/tasks">Tasks</router-link></li>
+      <li><router-link to="/profile">Profile</router-link></li>
       <li>
         <button @click="userStore.logOut">Log Out</button>
       </li>

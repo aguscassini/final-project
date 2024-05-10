@@ -20,9 +20,9 @@ const router = createRouter({
     }
     /*
     {
-      path: '/tasks',
-      name: 'Tasks',
-      component: Tasks,
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
     } */
   ]
 })
