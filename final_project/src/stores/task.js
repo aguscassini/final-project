@@ -39,6 +39,17 @@ export const useTaskStore = defineStore('tasks', {
       if (error) {
         console.error('Error deleting task:', error.message)
       } else this.tasks=this.tasks.filter((task) => task.id !== taskId)
+    },
+    async editTask(taskId, updatedTaskData) {
+      const { error } = await supabase
+        .from('tasks')
+        .update(updatedTaskData)
+        .match({ id: taskId });
+      if (error) {
+        console.error('Error updating task:', error.message);
+      } else {
+        await this.fetchTasks();
+      }
     }
   }
 
