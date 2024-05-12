@@ -23,64 +23,58 @@ async function checkUser(email, password) {
 <template>
   <form class="container" @submit.prevent="checkUser(email, password)">
     <h1>Sign In</h1>
-    <div>
+    <div class="form-group">
       <input v-model="email" type="email" placeholder="Email" />
     </div>
-    <div>
+    <div class="form-group">
       <input v-model="password" type="password" placeholder="Password" />
     </div>
-    <div>
+    <div class="form-group">
       <button type="submit">Log In</button>
-      <p></p>
     </div>
   </form>
 </template>
 
 <style scoped>
 .container {
-  width: 400px;
-  height: 450px;
-  margin: 100px 100px;
+  max-width: 400px;
+  margin: 150px auto 50px auto;
+  
   background-color: white;
-  padding: 60px 60px 60px 60px;
-  margin-bottom: 20px;
-  justify-items: center;
+  padding: 60px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
+
 .container h1 {
-  font-size: 15px;
-  color: #292e47;
-  padding-bottom: 20px;
+  font-size: 20px;
+  color: #57d9c1;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.container label {
-  display: block;
-  color: #f07d309d;
-  font-size: 12px;
-  padding-bottom: 20px;
+.form-group {
+  margin-bottom: 20px;
 }
 
 input[type='password'],
 input[type='email'] {
-  display: block;
-  box-sizing: border-box;
-  width: 90%;
-  font-size: 12px;
-  color: #6b708d;
-  padding: 10px;
-  border: none;
-  margin-bottom: 20px;
-  background-color: #eaebed;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f8f8f8;
 }
 
-.container button {
-  display: block;
-  width: 90%;
-  padding: 10px;
+button {
+  width: 100%;
+  padding: 12px;
   background-color: #57d9c1;
   color: white;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
 }
+
+
 </style>

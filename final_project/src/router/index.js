@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 /*import Dashboard from '../views/Dashboard.vue'
 import Tasks from '../views/Tasks.vue'*/
+import Auth from '../views/Auth.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +19,6 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/Auth.vue')
     }
-    /*
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile,
-    } */
   ]
 })
 

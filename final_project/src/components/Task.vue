@@ -26,32 +26,30 @@ const newSubmitTask = async () => {
 async function deleteTask(taskId) {
   await taskStore.deleteTask(taskId)
 }
-
 function editTask(taskId) {
-  const task = tasks.value.find(task => task.id === taskId); 
+  const task = tasks.value.find(task => task.id === taskId)
   if (task) {
-    editedTask.value.title = task.title;
-    editedTask.value.description = task.description;
-    taskToEdit.value = task; // Asignamos la tarea al ref taskToEdit
-    isEditing.value = true;
+    editedTask.value.title = task.title
+    editedTask.value.description = task.description
+    taskToEdit.value = task
   }
 }
 
 async function saveEditedTask() {
-  if (!taskToEdit.value) return; 
+  if (!taskToEdit.value) return
   await taskStore.editTask(taskToEdit.value.id, {
     title: editedTask.value.title,
     description: editedTask.value.description
-  });
-  isEditing.value = false;
-  taskToEdit.value = null; // Reseteamos taskToEdit a null
+  })
+  taskToEdit.value = null
 }
 
 
 </script>
 
 <template>
-<div>
+
+  <div>
     <h2>SUMMER 2024</h2>
     <form @submit.prevent="newSubmitTask">
       <h3>New Task</h3>
@@ -65,12 +63,11 @@ async function saveEditedTask() {
     <div class="task_design">
       <div v-for="task in tasks" :key="task.id" class="task-card">
         <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"></TaskCard>
-      </div>
-      <div v-if="isEditing">
-        <h3>Edit Task</h3>
-        <input v-model="editedTask.title" type="text" placeholder="Title" required />
-        <textarea v-model="editedTask.description" placeholder="Description"></textarea>
-        <button @click="saveEditedTask">Save </button>
+        <div v-if="taskToEdit && taskToEdit.id === task.id">
+          <input v-model="editedTask.title" type="text" placeholder="Title" required />
+          <textarea v-model="editedTask.description" placeholder="Description"></textarea>
+          <button @click="saveEditedTask">Save </button>
+        </div>
       </div>
     </div>
   </div>

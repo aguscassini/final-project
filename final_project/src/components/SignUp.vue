@@ -18,18 +18,18 @@ function signUp(email, password, confirmPassword){
 <template>
   <form class = "container" @submit.prevent="signUp(email, password, confirmPassword)">
       <h1>Sign Up</h1>
-      <div>
+      <div class="form-group">
         <input v-model="email" type="email" id="email" placeholder="Email" />
       </div>
 
-      <div>
+      <div class="form-group">
         <input v-model="password" type="password" id="password" placeholder="Password" />
       </div>
 
-      <div>
+      <div class="form-group">
         <input v-model="confirmPassword" type="password" id="confirmPassword" placeholder="Confirm password" />
       </div>
-      <div>
+      <div class="form-group">
         <button type="submit">Sign Up</button>
       </div>
       
@@ -39,41 +39,41 @@ function signUp(email, password, confirmPassword){
 <style scoped>
 
 .container {
-  width: 400px;
-  height: 400px;
-  margin: 100px 100px;
-  background-color: white;
-  padding: 60px 60px 60px 60px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
+  max-width: 400px;
+  margin: 150px auto 50px auto;
+    background-color: white;
+  padding: 60px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .container h1 {
-  font-size: 15px;
+  font-size: 20px;
   color: #57d9c1;
-  padding-bottom: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 20px;
 }
 
 input[type='password'],
 input[type='email'] {
-  display: block;
-  box-sizing: border-box;
-  width: 90%;
-  font-size: 12px;
-  color: #6b708d;
-  padding: 10px;
-  border: none;
-  margin-bottom: 20px;
-  background-color: #eaebed;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f8f8f8;
 }
 
-.container button {
-  display: block;
-  width: 90%;
-  padding: 10px;
+button {
+  width: 100%;
+  padding: 12px;
   background-color: #57d9c1;
   color: white;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
 }
 
