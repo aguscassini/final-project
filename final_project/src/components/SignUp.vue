@@ -41,8 +41,8 @@ function signUp(email, password, confirmPassword){
 .container {
 
   max-width: 400px;
-  margin: 150px auto 50px auto;
-    background-color: white;
+  margin: 150px auto 30px auto;
+  background-color: white;
   padding: 60px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@ input[type='email'] {
   background-color: #f8f8f8;
 }
 
-button {
+.container button {
   width: 100%;
   padding: 12px;
   background-color: #57d9c1;

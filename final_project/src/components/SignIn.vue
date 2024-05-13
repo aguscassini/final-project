@@ -38,7 +38,7 @@ async function checkUser(email, password) {
 <style scoped>
 .container {
   max-width: 400px;
-  margin: 150px auto 50px auto;
+  margin: 150px auto 30px auto;
   
   background-color: white;
   padding: 60px;
@@ -66,7 +66,7 @@ input[type='email'] {
   background-color: #f8f8f8;
 }
 
-button {
+.container button {
   width: 100%;
   padding: 12px;
   background-color: #57d9c1;

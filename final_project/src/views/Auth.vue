@@ -17,14 +17,14 @@ function toggleUser() {
   <section class="main-box">
     <article v-if="hasUser">
       <SignIn></SignIn>
-      <div class="toggle-button">
-        <button @click="toggleUser">I don't have an account</button>
+      <div>
+        <button class="toggle-button" @click="toggleUser">I don't have an account</button>
       </div>
     </article>
     <article v-else>
       <SignUp></SignUp>
-      <div class="toggle-button ">
-        <button @click="toggleUser">I already have an account</button>
+      <div>
+        <button class="toggle-button" @click="toggleUser">I already have an account</button>
       </div>
     </article>
   </section>
