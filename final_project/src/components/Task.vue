@@ -59,7 +59,7 @@ async function saveTask() {
     </div>
     <div class="task_design">
       <div v-for="task in tasks" :key="task.id" class="task-card">
-        <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"@save-edited-task="saveTask"></TaskCard>
+        <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"@save-edited-task="saveTask" ></TaskCard>
       </div>
     </div>
   </div>
@@ -70,6 +70,7 @@ async function saveTask() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 }
 
 h2 {
@@ -78,11 +79,12 @@ h2 {
 }
 
 .task-container form {
-  width: 400px;
-  padding: 40px;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%; /* Para ocupar todo el ancho disponible */
+  padding: 20px;
+  background-color: white; 
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .task-container form h2 {
@@ -122,18 +124,21 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
+
 }
 
 .task-card {
-  width: 300px;
-  height: 150px;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  width: 250px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
   text-align: center;
 }
-
+.icon-buttons button {
+  margin: 5px;
+}
 .task-card h3 {
   margin: 10px;
   font-size: 14px;
@@ -145,16 +150,4 @@ h2 {
   font-size: 12px;
 }
 
-.edit-form {
-  margin-top: 10px;
-}
-
-.edit-form button {
-  background-color: #57d9c1;
-  color: hwb(0 100% 0%);
-  border: none;
-  padding: 5px 10px;
-  border-radius: 20px;
-  cursor: pointer;
-}
 </style>

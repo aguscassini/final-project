@@ -50,9 +50,27 @@ export const useTaskStore = defineStore('tasks', {
       } else {
         await this.fetchTasks();
       }
+    },
+    async completeTask(taskId, isComplete) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ is_complete: isComplete }) 
+        .match({ id: taskId });
+      if (error) {
+        console.error('Error completing task:', error.message);
+      } else {
+        await this.fetchTasks();
+      }
+    },
+    async completeTask(taskId, isComplete) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ is_complete: isComplete })
+        .match({ id: taskId });
+      if (error) {
+        console.error('Error completing task:', error.message);
+      }
     }
   }
-
-
-  
 })
+
