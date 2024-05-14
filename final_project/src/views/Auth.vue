@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
 import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
 
@@ -15,6 +14,7 @@ function toggleUser() {
 
 <template>
   <section class="main-box">
+  
     <article v-if="hasUser">
       <SignIn></SignIn>
       <div>
@@ -31,30 +31,24 @@ function toggleUser() {
 </template>
 
 <style scoped>
-
-
-
-
-.main-box{
-  
+.main-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: auto;
+  align-items: center; 
+  height: 100vh; 
 }
 
-.toggle-button{
+.toggle-button {
+  width: 100%;
   border:none;
   background-color: transparent;
   text-decoration: none;
-  font-size: 12px;
-  color: #57d9c1;
+  font-size: 15px;
+  color: var(--light-blue);
   cursor: pointer;
   text-align: center;
-
+  font-weight: bold;
+  margin-bottom: 100px;
 }
-
-
 </style>

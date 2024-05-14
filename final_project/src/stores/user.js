@@ -38,12 +38,10 @@ export const useUserStore = defineStore('user', {
       console.error('Error during logout:', error.message);
       } else{
         router.push ('/auth');
+        this.user = null;
       }
       
     },
-
-
-
 
 
     },

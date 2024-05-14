@@ -13,10 +13,12 @@ export const useTaskStore = defineStore('tasks', {
         .from('tasks')
         .select('*')
         .order('id', { ascending: false })
+        .match({ user_id: useUserStore().user.data.user.id });
       this.tasks = tasks
     },
     async submitTask(newTaskTitle, newTaskDescription) {
       const userStore = useUserStore()
+      console.log(userStore.user.data.user.id);
       if (newTaskTitle.trim() !== '') {
         const { data, error } = await supabase.from('tasks').insert([
           {
@@ -62,15 +64,7 @@ export const useTaskStore = defineStore('tasks', {
         await this.fetchTasks();
       }
     },
-    async completeTask(taskId, isComplete) {
-      const { error } = await supabase
-        .from('tasks')
-        .update({ is_complete: isComplete })
-        .match({ id: taskId });
-      if (error) {
-        console.error('Error completing task:', error.message);
-      }
-    }
+    
   }
 })
 

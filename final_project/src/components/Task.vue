@@ -45,11 +45,11 @@ async function saveTask() {
 </script>
 
 <template>
-  <div class="task-container">
-    <h2>Welcome to you tasks</h2>
+  <div class="total-box">
+    <h2>Welcome </h2>
 
-    <form @submit.prevent="newSubmitTask">
-      <h3>New Task</h3>
+    <form class="form-box" @submit.prevent="newSubmitTask">
+      <h3>Add a new task</h3>
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
       <textarea v-model="newTaskDescription" placeholder="Description"></textarea>
       <button type="submit">Add Task</button>
@@ -57,7 +57,7 @@ async function saveTask() {
     <div v-if="!tasks">
       <p>No tasks available</p>
     </div>
-    <div class="task_design">
+    <div class="task-design">
       <div v-for="task in tasks" :key="task.id" class="task-card">
         <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"@save-edited-task="saveTask" ></TaskCard>
       </div>
@@ -66,88 +66,77 @@ async function saveTask() {
 </template>
 
 <style scoped>
-.task-container {
+
+.total-box {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  width: 100%;
+  height: auto;
 }
 
 h2 {
-  font-size: 30px;
-  margin: 50px auto 30px auto;
-}
-
-.task-container form {
-  width: 50%; /* Para ocupar todo el ancho disponible */
-  padding: 20px;
-  background-color: white; 
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.task-container form h2 {
-  font-size: 15px;
-  font-weight: bold;
+  margin: 50px auto 0 auto;
+  font-size: 20px;
+  width: 100%;
+  color: var(--light-blue);
   text-align: center;
 }
 
-.task-container form h3 {
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0px;
+  width: 40%;
+  height: 40vh;
+  padding: 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+}
+
+.form-box h3 {
   font-size: 20px;
-  margin-bottom: 20px;
+  color: var(--orange);
+  margin-bottom: 30px;
 }
 
-.task-container form input,
-.task-container form textarea {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
+.form-box input,
+.form-box textarea {
+  width: 100%; 
+  padding: 12px;
+  border: 1.5px solid var(--orange);
   border-radius: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  background-color: white;
+  outline: none;
+  margin-bottom: 10px;
+  box-sizing: border-box; 
 }
 
-.task-container form button[type='submit'] {
+.form-box button[type='submit'] {
   width: 100%;
-  padding: 10px;
-  background-color: #57d9c1;
+  padding: 12px;
+  background-color: var(--orange);
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
 }
 
-.task_design {
-  margin-top: 50px;
+.form-box button:hover{
+  background-color: var(--light-blue);
+
+}
+.task-design { 
+
+  margin: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
-
 }
-
-.task-card {
-  width: 250px;
-  padding: 15px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.icon-buttons button {
-  margin: 5px;
-}
-.task-card h3 {
-  margin: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.task-card p {
-  margin: 20px;
-  font-size: 12px;
-}
-
 </style>

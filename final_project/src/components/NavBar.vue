@@ -25,7 +25,7 @@ const userStore = useUserStore()
   align-items: center;
   width: 100%;
   justify-content: space-evenly;
-  background-color: #57d9c1;
+  background-color: var(--dark-blue);
 }
 
 .nav-bar li {
@@ -48,5 +48,6 @@ button {
   cursor: pointer;
   padding: 0 20px;
   background-color: transparent;
+  font-size:15px;
 }
 </style>
