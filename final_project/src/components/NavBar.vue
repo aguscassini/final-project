@@ -25,7 +25,7 @@ const userStore = useUserStore()
   align-items: center;
   width: 100%;
   justify-content: space-evenly;
-  background-color: var(--dark-blue);
+  background-color: var(--orange);
 }
 
 .nav-bar li {

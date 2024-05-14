@@ -1,8 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useTaskStore } from '../stores/task.js'
 import { storeToRefs } from 'pinia'
 import TaskCard from './TaskCard.vue'
+
 
 const newTaskTitle = ref('')
 const newTaskDescription = ref('')
@@ -41,15 +42,38 @@ async function saveTask() {
     taskToEdit.value = null;
     isEditing.value = !isEditing.value; 
   }
+  
 }
+
+function getCurrentDate() {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const daySuffixes = ['st', 'nd', 'rd', 'th'];
+
+  const currentDate = new Date();
+  const dayOfWeek = daysOfWeek[currentDate.getDay()];
+  const month = months[currentDate.getMonth()];
+  const dayOfMonth = currentDate.getDate();
+  const suffixIndex = (dayOfMonth - 1) % 10 > 3 ? 3 : (dayOfMonth - 1) % 10;
+  const daySuffix = daySuffixes[suffixIndex];
+
+  return `${dayOfWeek} ${month} ${dayOfMonth}${daySuffix}`;
+}
+
+const completedTasks = computed(() => tasks.value.filter(task => task.is_complete))
+const incompleteTasks = computed(() => tasks.value.filter(task => !task.is_complete))
+
 </script>
 
 <template>
   <div class="total-box">
-    <h2>Welcome </h2>
+    <img src="../assets/icons/task_icon.svg" alt="Task Icon" />
+    <h2> Hi @profile! </h2>
 
     <form class="form-box" @submit.prevent="newSubmitTask">
-      <h3>Add a new task</h3>
+      <h3>Do you have any new task?</h3>
+      <p>{{ getCurrentDate() }}</p>
+
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
       <textarea v-model="newTaskDescription" placeholder="Description"></textarea>
       <button type="submit">Add Task</button>
@@ -57,11 +81,24 @@ async function saveTask() {
     <div v-if="!tasks">
       <p>No tasks available</p>
     </div>
-    <div class="task-design">
-      <div v-for="task in tasks" :key="task.id" class="task-card">
-        <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask"@save-edited-task="saveTask" ></TaskCard>
+    <section class="incomplete-section">
+      <h4>Incomplete Tasks</h4>
+      <div class="task-design">
+        <div v-for="task in incompleteTasks" :key="task.id" class="task-card">
+          <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask" @save-edited-task="saveTask"></TaskCard>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="completed-section">
+    <h4>Completed Tasks</h4>
+      <div class="task-design">
+        <div v-for="task in completedTasks" :key="task.id" class="task-card">
+          <TaskCard :task="task" @delete-task="deleteTask" @edit-task="editTask" @save-edited-task="saveTask"></TaskCard>
+        </div>
+      </div>
+    </section>
+
+ 
   </div>
 </template>
 
@@ -76,25 +113,31 @@ async function saveTask() {
   height: auto;
 }
 
+img{
+  width: 180px;
+  height: 180px;
+  margin: 100px 0 50px 0;
+}
+
 h2 {
-  margin: 50px auto 0 auto;
-  font-size: 20px;
+  font-size: 25px;
   width: 100%;
-  color: var(--light-blue);
+  color: var(--red);
   text-align: center;
 }
+
 
 .form-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px 0px;
-  width: 40%;
-  height: 40vh;
-  padding: 50px;
-  background-color: white;
-  border-radius: 10px;
+  margin: 30px 0 50px 0px;
+  width: 30%;
+  height: 50vh;
+  padding: 30px;
+  background-color: var(--dark-blue);
+  border-radius: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   max-width: 90%;
 }
@@ -102,24 +145,32 @@ h2 {
 .form-box h3 {
   font-size: 20px;
   color: var(--orange);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-weight: normal;
 }
 
+.form-box p {
+  font-size: 15px;
+  color: var(--ultralight-blue);
+  margin-bottom: 30px;
+font-style: italic;
+  
+}
 .form-box input,
 .form-box textarea {
   width: 100%; 
-  padding: 12px;
-  border: 1.5px solid var(--orange);
+  padding: 15px;
+  border: 1px solid white;
   border-radius: 20px;
   background-color: white;
   outline: none;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   box-sizing: border-box; 
 }
 
 .form-box button[type='submit'] {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   background-color: var(--orange);
   color: white;
   border: none;
@@ -131,12 +182,38 @@ h2 {
   background-color: var(--light-blue);
 
 }
-.task-design { 
 
+.completed-section {
+  width: 70%; 
+  background-color: var(--red);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 100px;
+
+}
+
+.incomplete-section {
+  width: 70%; 
+  background-color: var(--orange);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.completed-section h4, .incomplete-section h4 {
+  font-size: 20px; 
+  color: white; 
+  margin: 40px 60px;
+  font-weight: normal;
+
+}
+
+
+.task-design { 
   margin: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
+  color: var(--dark-blue);
 }
 </style>

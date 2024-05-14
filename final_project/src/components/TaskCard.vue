@@ -23,7 +23,6 @@ function editTask(task) {
     editedTitle.value = task.title
     editedDescription.value = task.description
   } else {
-    // Si no está en modo de edición, restablece los campos editables
     editedTitle.value = ''
     editedDescription.value = ''
     emit('save-edited-task', task)
@@ -49,7 +48,6 @@ async function toggleCompletion(task) {
       <input type="text" v-model="editedTitle" />
       <input type="text" v-model="editedDescription" />
       <div class="button-group">
-        <!-- Botón de guardar -->
         <button @click="saveTask(task.id, editedTitle, editedDescription)">
           <img src="@/assets/icons/save.svg" alt="Save Task" />
         </button>
@@ -60,7 +58,10 @@ async function toggleCompletion(task) {
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
       <div class="button-group" v-if="!isEditable">
-        <button @click="toggleCompletion(task)" class="completion-button">{{ task.is_complete ? 'Done' : 'In process' }}</button>
+        <button @click="toggleCompletion(task)" class="completion-button">
+          <img v-if="task.is_complete" src="@/assets/icons/done.svg" alt="Done" />
+          <img v-else src="@/assets/icons/clock.svg" alt="In Process" />
+        </button>
         
         <button @click="editTask(task)">
           <img src="@/assets/icons/edit.svg" alt="Edit Task" />
@@ -80,17 +81,18 @@ async function toggleCompletion(task) {
 .task-card {
   position: relative;
   width: 300px;
-  max-width: 300px;
-  padding: 20px;
-  border-radius: 10px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 20px;
   margin-bottom: 20px;
+  background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .task-card input[type="text"] {
   width: 100%;
   padding: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   border: 1px solid var(--ultra-light-blue);
   border-radius: 5px;
   box-sizing: border-box;
@@ -104,21 +106,36 @@ async function toggleCompletion(task) {
 }
 
 .button-group button {
-  background-color: var(--red);
+  background-color: var(--orange);
   color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: 3px 10px;
+  border-radius: 50%;
   cursor: pointer;
   margin-right: 5px;
+  width: auto;
+  height: 40px;
+
+}
+
+.button-group button:hover{
+  background-color: var(--light-blue);
+
+}
+.completion-button{
+  width: 70px;
+  height: 40px;
+}
+
+img{
   
+  width: 20px;
+  height: 20px;
 }
 
 
 .completed button {
-  background-color: var(--light-blue);
+  background-color: var(--red);
 }
-
 
 
 </style>
