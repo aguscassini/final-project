@@ -32,9 +32,13 @@ const userStore = useUserStore()
   list-style: none;
   list-style-type: none;
   text-decoration: none;
-  gap: 15px;
+  gap: 18px;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
+}
+
+.nav-bar li:hover {
+  color: var(--light-blue);
 }
 
 .nav-bar a {
@@ -48,6 +52,11 @@ button {
   cursor: pointer;
   padding: 0 20px;
   background-color: transparent;
-  font-size:15px;
+  font-size:18px;
 }
+
+button:hover {
+  color: var(--light-blue);
+}
+
 </style>
