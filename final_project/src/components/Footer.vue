@@ -19,6 +19,7 @@ const userStore = useUserStore()
 
 <style scooped>
 .footer {
+  margin-top: 90px;
   padding: 20px 40px 20px 40px;
   display: flex;
   align-items: center;
@@ -35,7 +36,6 @@ const userStore = useUserStore()
   color: white;
   font-size: 14px;
 }
-
 
 
 .footer a {

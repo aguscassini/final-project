@@ -15,6 +15,7 @@ async function signUp(email, password, confirmPassword){
         if (password === confirmPassword) {
             await userStore.signUp(email, password);
             console.log('User signed up successfully.');
+            alert('Registration successful! Please check your email to verify your account.');
             router.push({ path: '/' });
         } else {
             console.error("Las contraseñas no coinciden");
@@ -53,7 +54,7 @@ async function signUp(email, password, confirmPassword){
 <style scoped>
 .container {
   max-width: 500px;
-  margin: 100px auto 30px auto;
+  margin: 100px 50px 30px 50px;
   padding: 40px 50px;
   background-color: var(--ultralight-blue);
   border-radius: 20px;
@@ -107,5 +108,9 @@ input[type='email'] {
 .container button:hover {
   background-color: var(--light-blue);
 }
+
+
+
+@media (max-width: 365px)  {}
 </style>
 

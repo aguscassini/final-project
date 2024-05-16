@@ -9,18 +9,18 @@ export const useTaskStore = defineStore('tasks', {
   }),
   actions: {
     async fetchTasks() {
+      console.log(useUserStore().user)
       const { data: tasks } = await supabase
         .from('tasks')
         .select('*')
         .order('id', { ascending: false })
-        .match({ user_id: useUserStore().user.data.user.id });
+        .match({ user_id: useUserStore().user.id });
       this.tasks = tasks
     },
     async submitTask(newTaskTitle, newTaskDescription) {
       const userStore = useUserStore()
-      console.log(userStore.user.data.user.id);
       if (newTaskTitle.trim() !== '') {
-        const { data, error } = await supabase.from('tasks').insert([
+        const { error } = await supabase.from('tasks').insert([
           {
             user_id: userStore.user.data.user.id,
             title: newTaskTitle,

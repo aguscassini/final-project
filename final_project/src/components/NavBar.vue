@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user.js'
 
+
 const router = useRouter()
 const userStore = useUserStore()
 </script>
@@ -20,6 +21,7 @@ const userStore = useUserStore()
 
 <style scooped>
 .nav-bar {
+  margin-bottom: 90px;
   padding: 20px 40px 20px 40px;
   display: flex;
   align-items: center;
@@ -59,4 +61,19 @@ button:hover {
   color: var(--light-blue);
 }
 
+@media (max-width: 365px)  {
+  .nav-bar:not(.active) li {
+  display: none;
+}
+
+.nav-bar.active {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav-bar.active li {
+  display: block;
+  margin-bottom: 10px;
+}
+}
 </style>

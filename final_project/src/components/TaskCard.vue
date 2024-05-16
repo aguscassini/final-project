@@ -92,8 +92,7 @@ async function toggleCompletion(task) {
 
 .task-card {
   position: relative;
-  width: 17vw;
-  height: 20vh;
+  width: 180px;
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
@@ -102,7 +101,6 @@ async function toggleCompletion(task) {
 
 .task-card input[type='text'] {
   width: 100%;
-  height: auto;
   border: 1px solid white;
   background-color: white;
 }
@@ -141,17 +139,6 @@ img {
 }
 
 
-@media (max-width: 375px) and (max-height: 667px) {
-  .task-card {
-    width: 90%;
-    padding: 10px;
-  }
 
 
-  .button-group button {
-    width: 40px; 
-    height: 40px; 
-  }
-
-}
 </style>

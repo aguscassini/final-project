@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import { useUserStore } from '../stores/user.js'
 import { useRouter } from 'vue-router';
+import { useTaskStore } from '@/stores/task.js';
 
 const userStore = useUserStore()
+const taskStore = useTaskStore();
 const router = useRouter();
 
 const email = ref('')
@@ -12,6 +14,7 @@ const password = ref('')
 async function checkUser(email, password) {
   try {
     await userStore.signIn(email, password); 
+    await taskStore.fetchTasks();
     router.push({ path: '/' });
   } catch (error) {
     console.error('Error during sign-in:', error);
@@ -42,7 +45,7 @@ async function checkUser(email, password) {
 
 .container {
   max-width: 500px;
-  margin: 100px auto 30px auto;
+  margin: 100px 50px 30px 50px;
   padding: 40px 50px;
   background-color: var(--ultralight-blue);
   border-radius: 20px;

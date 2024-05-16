@@ -30,7 +30,6 @@ function editTask(taskId) {
     taskToEdit.value = task
     isEditing.value = !isEditing.value
   }
-  
 }
 
 async function saveTask() {
@@ -74,7 +73,6 @@ function getCurrentDate() {
 
 const completedTasks = computed(() => tasks.value.filter((task) => task.is_complete))
 const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_complete))
-
 </script>
 
 <template>
@@ -87,7 +85,7 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
       <p>{{ getCurrentDate() }}</p>
 
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
-      <input v-model="newTaskDescription" type="text" placeholder="Description"/>
+      <input v-model="newTaskDescription" type="text" placeholder="Description" />
       <button type="submit">Add Task</button>
     </form>
     <div v-if="!tasks">
@@ -128,10 +126,7 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
 .total-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: auto;
 }
 
 img {
@@ -141,7 +136,7 @@ img {
 }
 
 h2 {
-  margin: 100px 0 30px 0;
+  margin: 0px 0 30px 0;
   font-size: 20px;
   width: 100%;
   color: var(--red);
@@ -153,14 +148,13 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 300px 50px 300px;
-  width: 80%;
+  margin: 0px 45px 50px 45px;
+  max-width: 600px;
   height: 50%;
   padding: 40px;
   background-color: var(--dark-blue);
   border-radius: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
 }
 
 .form-box h3 {
@@ -168,6 +162,7 @@ h2 {
   color: var(--orange);
   margin-bottom: 20px;
   font-weight: normal;
+  text-align: center;
 }
 
 .form-box p {
@@ -178,7 +173,6 @@ h2 {
 }
 .form-box input {
   width: 100%;
-  height: 10vh;
   padding: 15px;
   border: 1px solid white;
   border-radius: 20px;
@@ -187,12 +181,10 @@ h2 {
   box-sizing: border-box;
   font-size: 15px;
   font-family: 'Open Sans', sans-serif;
-  
 }
 
 .form-box button[type='submit'] {
   width: 100%;
-  height: 10vh;
   padding: 15px;
   background-color: var(--ultralight-blue);
   color: var(--dark-blue);
@@ -209,104 +201,61 @@ h2 {
 .box-section {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 50px;
-  margin: 0 100px;
+  align-items: first baseline;
+  gap: 30px;
 }
 
 .completed-section {
-  width: 100%;
-  height: auto;
+  max-width: 390px;
   background-color: var(--red);
   border-radius: 20px;
-  margin-bottom: 100px;
+ 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 0px 50px 30px 50px;
 }
 
-
 .incomplete-section {
-  width: 100%;
-  height: auto;
+  max-width: 390px;
   background-color: var(--orange);
   border-radius: 20px;
-  margin-bottom: 100px;
-
+ 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 0px 50px 30px 50px;
 }
 
 .completed-section h4,
 .incomplete-section h4 {
-  font-size: 18px;
+  font-size: 20px;
   color: white;
-  margin: 40px 60px 20px 60px;
+  margin: 30px 0;
   font-weight: normal;
   text-align: center;
 }
 
 .task-design {
-  margin: 50px;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction:column;
   justify-content: center;
-  gap: 20px;
-  
+
 }
 
-@media (max-width: 365px) and (max-height: 367px) {
-  img {
-    width: 100px;
-    height: 100px;
-  }
+@media (max-width: 365px)  {
+ 
 
-  h2 {
-    font-size: 15px;
-  }
-
-  .form-box {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .form-box h3 {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  .form-box p {
-    font-size: 12px;
-    margin-bottom: 20px;
-  }
-
-  .form-box input {
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 12px;
-  }
-
-  .form-box button[type='submit'] {
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .box-section {
-    flex-direction: column;
-  }
-
+ 
   .completed-section,
   .incomplete-section {
-    width: 100%;
-    height: auto;
+    margin-bottom: 50px;
   }
 
   .completed-section h4,
   .incomplete-section h4 {
-    font-size: 15px;
+    font-size: 13px;
   }
 
-  .task-design {
-    margin: 20px 0;
-  }
+
 }
 </style>

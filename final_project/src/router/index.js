@@ -19,6 +19,10 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/Auth.vue')
     }
+
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/Profile.vue')
   ]
 })
 
