@@ -11,10 +11,10 @@ const password = ref('')
 const confirmPassword = ref("")
 const username = ref('')
 
-async function signUp(username, email, password, confirmPassword){
+async function signUp(){
     try {
-        if (password === confirmPassword) {
-            await userStore.signUp(email, password, username);
+        if (password.value === confirmPassword.value) {
+            await userStore.signUp(email.value, password.value, username.value);
             console.log('User signed up successfully.');
             alert('Registration successful! Please check your email to verify your account.');
             router.push({ path: '/' });

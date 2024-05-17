@@ -5,14 +5,15 @@ import { storeToRefs } from 'pinia'
 
 
 const userStore = useUserStore()
-const { profile } = storeToRefs(userStore) 
+const profile = userStore.profile
+const avatarUrl = ref ("")
 
 const updateProfile = async () => {
   await userStore.updateProfile({ 
-    user_id: userStore.profile.user_id,
-    username: userStore.profile.username,
-    email: userStore.profile.email,
-    avatar_url: userStore.profile.avatar_url
+    user_id: userStore.user_id,
+    username: profile.value.username,
+    email: profile.value.email,
+    avatar_url: profile.avatar_url
   })
   await userStore.fetchProfile() 
 }
@@ -33,10 +34,14 @@ setTimeout(() => { console.log(profile.value); }, 2000);
       <div>
         <input v-model="profile.website" placeholder="Website" type="text" id="website" />
       </div>
-      <div v-if="profile.avatar_url">
-        <img :src="userStore.profile.avatar_url" alt="avatar" />
+
+      <div>
+        <input v-model="profile.avatar_url" placeholder="Avatar URL" type="text" id="avatar-url" />
       </div>
 
+      <div v-if="profile.avatar_url">
+        <img :src="userStore.profile.avatar_url" alt="avatar" />
+        </div>
       <div>
         <button type="submit">Update</button>
       </div>
@@ -101,8 +106,10 @@ setTimeout(() => { console.log(profile.value); }, 2000);
 }
 
 .profile-form-group img {
-  width: 120px;
-  border-radius: 50%;
+  width: 120px; 
+  height: 120px; 
+  border-radius: 50%; 
+  object-fit: cover;
   margin: 10px 0 30px 0;
 }
 

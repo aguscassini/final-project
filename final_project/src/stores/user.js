@@ -71,7 +71,7 @@ export const useUserStore = defineStore('user', {
           user_id: this.user.id,
           email: this.user.email,
           username: username,
-          avatar: user.avatar_url
+          avatar_url: user.avatar_url
         }
       ])
 
