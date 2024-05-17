@@ -27,6 +27,7 @@ onMounted(async () => {
     } else {
       // continue to dashboard
       await taskStore.fetchTasks()
+      await userStore.fetchProfile()
       router.push({ path: '/' });
     }
   } catch (e) {

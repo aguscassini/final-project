@@ -10,10 +10,10 @@ const userStore = useUserStore()
 <template>
   <nav >
     <ul class="nav-bar">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/profile">Profile</router-link></li>
+      <li><router-link to="/"> <img src="../assets/icons/home.svg" alt="home-icon"> </router-link></li>
+      <li><router-link to="/profile"><img src="../assets/icons/profile.svg" alt="profile-icon"></router-link></li>
       <li>
-        <button @click="userStore.logOut">Log Out</button>
+        <button @click="userStore.logOut"><img src="../assets/icons/logout.svg" alt="logout-icon"></button>
       </li>
     </ul>
   </nav>
@@ -22,12 +22,13 @@ const userStore = useUserStore()
 <style scooped>
 .nav-bar {
   margin-bottom: 90px;
-  padding: 20px 40px 20px 40px;
+  padding: 15px 40px 15px 40px;
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-evenly;
-  background-color: var(--orange);
+  justify-content:center;
+  gap: 100px;
+  background-color: var(--light-blue);
 }
 
 .nav-bar li {
@@ -39,9 +40,7 @@ const userStore = useUserStore()
   font-size: 18px;
 }
 
-.nav-bar li:hover {
-  color: var(--light-blue);
-}
+
 
 .nav-bar a {
   text-decoration: none; 
@@ -52,28 +51,21 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  padding: 0 20px;
   background-color: transparent;
   font-size:18px;
 }
 
-button:hover {
-  color: var(--light-blue);
+
+.nav-bar img {
+  width: 20px;
+  height: 20px;
+}
+  
+ 
+  .nav-bar img:hover {
+  transform: scale(1.08); 
+  transition: transform 0.3s ease;
+
 }
 
-@media (max-width: 365px)  {
-  .nav-bar:not(.active) li {
-  display: none;
-}
-
-.nav-bar.active {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.nav-bar.active li {
-  display: block;
-  margin-bottom: 10px;
-}
-}
 </style>

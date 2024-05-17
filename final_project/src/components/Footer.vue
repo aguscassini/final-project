@@ -11,6 +11,7 @@ const userStore = useUserStore()
     <ul class="footer">
      
       <li><a href="#">About Us</a></li>
+      <li><a href="#">Privacy Policy</a></li>
       <li><a href="#">Contact</a></li>
 
     </ul>
@@ -37,12 +38,15 @@ const userStore = useUserStore()
   font-size: 14px;
 }
 
-
 .footer a {
   text-decoration: none; 
   color: inherit; 
 }
 
+.footer li:hover {
+  transform: scale(1.08); 
+  transition: transform 0.3s ease;
+}
 
-
+  
 </style>

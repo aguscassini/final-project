@@ -9,11 +9,12 @@ const router = useRouter();
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref("")
+const username = ref('')
 
-async function signUp(email, password, confirmPassword){
+async function signUp(username, email, password, confirmPassword){
     try {
         if (password === confirmPassword) {
-            await userStore.signUp(email, password);
+            await userStore.signUp(email, password, username);
             console.log('User signed up successfully.');
             alert('Registration successful! Please check your email to verify your account.');
             router.push({ path: '/' });
@@ -30,8 +31,11 @@ async function signUp(email, password, confirmPassword){
 <template>
    <section class="container">
     <img src="../assets/icons/auth_img.svg" alt="logo" >
-  <form @submit.prevent="signUp(email, password, confirmPassword)">
+  <form @submit.prevent="signUp(username, email, password, confirmPassword)">
       <h1>Sign Up</h1>
+      <div class="form-group">
+        <input v-model="username" type="text" id="username" placeholder="Username" />
+      </div>
       <div class="form-group">
         <input v-model="email" type="email" id="email" placeholder="Email" />
       </div>
@@ -86,6 +90,7 @@ async function signUp(email, password, confirmPassword){
 }
 
 input[type='password'],
+input[type='text'] ,
 input[type='email'] {
   width: 100%;
   padding: 12px;
@@ -111,6 +116,5 @@ input[type='email'] {
 
 
 
-@media (max-width: 365px)  {}
 </style>
 

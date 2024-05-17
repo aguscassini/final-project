@@ -78,7 +78,7 @@ async function toggleCompletion(task) {
 
 <style scoped>
 .title-design {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
   color: var(--dark-blue);
@@ -97,6 +97,13 @@ async function toggleCompletion(task) {
   border-radius: 20px;
   margin-bottom: 20px;
   background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+
+}
+.task-card:hover {
+  transform: scale(1.05); 
+  transition: transform 0.3s ease;
 }
 
 .task-card input[type='text'] {

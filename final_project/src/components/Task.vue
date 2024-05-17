@@ -77,8 +77,6 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
 
 <template>
   <div class="total-box">
-    <h2>Hi @profile!</h2>
-
     <form class="form-box" @submit.prevent="newSubmitTask">
       <img src="../assets/icons/task_icon.svg" alt="Task Icon" />
       <h3>Do you have any new task?</h3>
@@ -125,8 +123,11 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
 <style scoped>
 .total-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:flex-start;
+  gap: 50px;
 }
 
 img {
@@ -135,20 +136,11 @@ img {
   margin: 0 0 30px 0;
 }
 
-h2 {
-  margin: 0px 0 30px 0;
-  font-size: 20px;
-  width: 100%;
-  color: var(--red);
-  text-align: center;
-}
-
 .form-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 45px 50px 45px;
   max-width: 600px;
   height: 50%;
   padding: 40px;
@@ -158,7 +150,7 @@ h2 {
 }
 
 .form-box h3 {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--orange);
   margin-bottom: 20px;
   font-weight: normal;
@@ -204,14 +196,13 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: first baseline;
-  gap: 30px;
+  gap: 50px;
 }
 
 .completed-section {
   max-width: 390px;
   background-color: var(--red);
   border-radius: 20px;
- 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   padding: 0px 50px 30px 50px;
 }
@@ -220,42 +211,30 @@ h2 {
   max-width: 390px;
   background-color: var(--orange);
   border-radius: 20px;
- 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   padding: 0px 50px 30px 50px;
 }
 
 .completed-section h4,
 .incomplete-section h4 {
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   margin: 30px 0;
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
 }
 
 .task-design {
   width: 100%;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
-
 }
 
-@media (max-width: 365px)  {
- 
 
- 
-  .completed-section,
-  .incomplete-section {
-    margin-bottom: 50px;
+@media screen and (max-width: 480px) {
+  .form-box{
+    margin: 0 45px 0 45px;
   }
-
-  .completed-section h4,
-  .incomplete-section h4 {
-    font-size: 13px;
-  }
-
-
 }
 </style>

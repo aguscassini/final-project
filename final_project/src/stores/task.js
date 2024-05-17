@@ -22,7 +22,7 @@ export const useTaskStore = defineStore('tasks', {
       if (newTaskTitle.trim() !== '') {
         const { error } = await supabase.from('tasks').insert([
           {
-            user_id: userStore.user.data.user.id,
+            user_id: userStore.user.id,
             title: newTaskTitle,
             description: newTaskDescription
           }
