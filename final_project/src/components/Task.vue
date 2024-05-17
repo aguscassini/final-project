@@ -68,7 +68,7 @@ function getCurrentDate() {
   const suffixIndex = (dayOfMonth - 1) % 10 > 3 ? 3 : (dayOfMonth - 1) % 10
   const daySuffix = daySuffixes[suffixIndex]
 
-  return `${dayOfWeek} ${month} ${dayOfMonth}${daySuffix}`
+  return `${dayOfWeek},  ${month} ${dayOfMonth}${daySuffix}`
 }
 
 const completedTasks = computed(() => tasks.value.filter((task) => task.is_complete))
@@ -80,6 +80,7 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
     <form class="form-box" @submit.prevent="newSubmitTask">
       <img src="../assets/icons/task_icon.svg" alt="Task Icon" />
       <h3>Do you have any new task?</h3>
+      <p> Hi !</p>
       <p>{{ getCurrentDate() }}</p>
 
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
@@ -147,6 +148,12 @@ img {
   background-color: var(--dark-blue);
   border-radius: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-box:hover {
+  transform: scale(1.05); 
+  transition: transform 0.3s ease;
+
 }
 
 .form-box h3 {

@@ -6,7 +6,6 @@ import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore()
 const profile = userStore.profile
-const avatarUrl = ref ("")
 
 const updateProfile = async () => {
   await userStore.updateProfile({ 
@@ -18,7 +17,6 @@ const updateProfile = async () => {
   await userStore.fetchProfile() 
 }
 
-setTimeout(() => { console.log(profile.value); }, 2000);
 </script>
 
 <template>
@@ -40,10 +38,10 @@ setTimeout(() => { console.log(profile.value); }, 2000);
       </div>
 
       <div v-if="profile.avatar_url">
-        <img :src="userStore.profile.avatar_url" alt="avatar" />
+        <img :src="profile.avatar_url" alt="avatar" class="avatar-image"/>
         </div>
       <div>
-        <button type="submit">Update</button>
+        <button @click="updateProfile" type="submit">Update</button>
       </div>
     </form>
   </article>
@@ -73,7 +71,7 @@ setTimeout(() => { console.log(profile.value); }, 2000);
 .profile-form-group h2{
   font-size: 20px;
   font-weight: normal;
-  color: white;
+  color: var(--orange);
   margin-bottom: 30px;
 }
 
@@ -105,13 +103,13 @@ setTimeout(() => { console.log(profile.value); }, 2000);
   background-color: var(--light-blue);
 }
 
-.profile-form-group img {
-  width: 120px; 
-  height: 120px; 
-  border-radius: 50%; 
-  object-fit: cover;
-  margin: 10px 0 30px 0;
-}
+.avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px 0 30px 0;
+  }
 
 
 </style>
