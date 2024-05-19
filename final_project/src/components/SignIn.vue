@@ -18,6 +18,8 @@ async function checkUser(email, password) {
     router.push({ path: '/' });
   } catch (error) {
     console.error('Error during sign-in:', error);
+    alert(error.message)  
+
   }
 }
 

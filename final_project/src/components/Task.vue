@@ -12,6 +12,8 @@ const isEditing = ref(false)
 const editedTask = ref({ title: '', description: '' })
 const taskToEdit = ref(null)
 
+
+
 const newSubmitTask = async () => {
   await taskStore.submitTask(newTaskTitle.value, newTaskDescription.value)
   newTaskTitle.value = ''
@@ -80,7 +82,6 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
     <form class="form-box" @submit.prevent="newSubmitTask">
       <img src="../assets/icons/task_icon.svg" alt="Task Icon" />
       <h3>Do you have any new task?</h3>
-      <p> Hi !</p>
       <p>{{ getCurrentDate() }}</p>
 
       <input v-model="newTaskTitle" type="text" placeholder="Title" required />
@@ -239,7 +240,7 @@ img {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 375px) {
   .form-box{
     margin: 0 45px 0 45px;
   }

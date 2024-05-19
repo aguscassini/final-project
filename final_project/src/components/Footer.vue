@@ -46,6 +46,8 @@ const userStore = useUserStore()
 .footer li:hover {
   transform: scale(1.08); 
   transition: transform 0.3s ease;
+  filter: brightness(0) sepia(1) hue-rotate(190deg) saturate(4) opacity(0.5);
+
 }
 
   

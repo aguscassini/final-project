@@ -1,47 +1,54 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '../stores/user.js'
 import { storeToRefs } from 'pinia'
 
 
 const userStore = useUserStore()
-const profile = userStore.profile
+const { profile } = storeToRefs(userStore)
 
 const updateProfile = async () => {
-  await userStore.updateProfile({ 
-    user_id: userStore.user_id,
-    username: profile.value.username,
-    email: profile.value.email,
-    avatar_url: profile.avatar_url
-  })
-  await userStore.fetchProfile() 
+  try {
+    const updatedProfile = { 
+      username: profile.value.username,
+      email: profile.value.email,
+      website: profile.value.website,
+      avatar_url: profile.value.avatar_url
+    }
+    await userStore.updateProfile(updatedProfile)
+    alert('Your profile has been updated!')
+  } catch (error) {
+    console.error('Error updating profile:', error)
+  }
 }
-
+onMounted(async () => {
+  if (userStore.user) {
+    await userStore.fetchProfile()
+  }
+})
 </script>
 
 <template>
-  <article class ="profile-box" v-if="profile">
-    <form class="profile-form-group" @submit.prevent="updateUserProfile">
+  <article class="profile-box" v-if="profile.value">
+    <form class="profile-form-group" @submit.prevent="updateProfile">
       <h2>Profile</h2>
- <div>
-        <input v-model="profile.username" placeholder="Username" type="text" id="username" />
+      <div>
+        <input v-model="profile.value.username" placeholder="Username" type="text" id="username" />
       </div>
       <div>
-        <input v-model="profile.email" placeholder="Email" type="email" id="email" />
+        <input v-model="profile.value.email" placeholder="Email" type="email" id="email" />
       </div>
       <div>
-        <input v-model="profile.website" placeholder="Website" type="text" id="website" />
+        <input v-model="profile.value.website" placeholder="Website" type="text" id="website" />
       </div>
-
       <div>
-        <input v-model="profile.avatar_url" placeholder="Avatar URL" type="text" id="avatar-url" />
+        <input v-model="profile.value.avatar_url" placeholder="Avatar URL" type="text" id="avatar-url" />
       </div>
-
-      <div v-if="profile.avatar_url">
-        <img :src="profile.avatar_url" alt="avatar" class="avatar-image"/>
-        </div>
+      <div v-if="profile.value.avatar_url">
+        <img :src="profile.value.avatar_url" alt="avatar" class="avatar-image" />
+      </div>
       <div>
-        <button @click="updateProfile" type="submit">Update</button>
+        <button type="submit">Update</button>
       </div>
     </form>
   </article>
