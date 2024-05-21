@@ -75,7 +75,6 @@ export const useUserStore = defineStore('user', {
         }
         router.push('/auth');
         this.user = null;
-       this.task = null;
         this.profile = null;
     
        

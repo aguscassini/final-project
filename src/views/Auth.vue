@@ -54,7 +54,7 @@ function toggleUser() {
   color: var(--light-blue);
   cursor: pointer;
   text-align: center;
-  margin-bottom: 100px;
+  margin: 30px 0 100px 0;
 }
 
 a {

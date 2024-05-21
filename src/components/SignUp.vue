@@ -58,11 +58,11 @@ async function signUp(){
 <style scoped>
 .container {
   max-width: 500px;
-  margin: 100px 50px 30px 50px;
+  margin: 200px 50px 0px 50px;
   padding: 40px 50px;
   background-color: var(--ultralight-blue);
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(73, 61, 61, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,6 +113,8 @@ input[type='email'] {
 .container button:hover {
   background-color: var(--light-blue);
 }
+
+
 
 
 

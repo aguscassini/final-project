@@ -47,7 +47,7 @@ async function checkUser(email, password) {
 
 .container {
   max-width: 500px;
-  margin: 100px 50px 30px 50px;
+  margin: 100px 50px 0px 50px;
   padding: 40px 50px;
   background-color: var(--ultralight-blue);
   border-radius: 20px;
