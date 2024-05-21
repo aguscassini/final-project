@@ -1,4 +1,3 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { supabase } from '../supabase'
 import router from '@/router'
@@ -6,12 +5,7 @@ import router from '@/router'
 export const useUserStore = defineStore('user', {
   state: () => ({
     user: null,
-    profile: ref({
-      username: '',
-      email: '',
-      website: '',
-      avatar_url: ''
-    })
+    profile: null
   }),
 
   actions: {
@@ -44,46 +38,49 @@ export const useUserStore = defineStore('user', {
       }      this.user = data.user
       await this.fetchProfile()
     },
-
-    async logOut() {
+    async saveProfileBeforeLogout() {
+      const updatedProfile = { 
+        username: this.profile.username,
+        email: this.profile.email,
+        website: this.profile.website,
+        avatar_url: this.profile.avatar_url
+      };
+    
       try {
-        // Guardar el perfil antes de cerrar sesión
-        const updatedProfile = { 
-          username: this.profile.value.username,
-          email: this.profile.value.email,
-          website: this.profile.value.website,
-          avatar_url: this.profile.value.avatar_url
-        }
-
-        const { error: updateError } = await supabase
+        const { data, error } = await supabase
           .from('profiles')
           .update(updatedProfile)
-          .match({ user_id: this.user.id })
-
-        if (updateError) {
-          console.error('Error updating profile during logout:', updateError.message)
-          throw updateError
+          .match({ user_id: this.user.id });
+    
+        if (error) {
+          console.error('Error updating profile during logout:', error.message);
+          throw error;
         }
-
-        // Cerrar sesión
-        const { error: signOutError } = await supabase.auth.signOut()
-        if (signOutError) {
-          console.error('Error during logout:', signOutError.message)
-          throw signOutError
-        }
-
-        this.user = null
-        this.task = null
-        this.profile.value = {
-          username: '',
-          email: '',
-          website: '',
-          avatar_url: ''
-        }
-
-        router.push('/auth')
+    
+        return data;
       } catch (error) {
-        console.error('Error during logout process:', error.message)
+        console.error('Error updating profile during logout:', error.message);
+        throw error;
+      }
+    },
+  
+    async logOut() {
+      try {
+        await this.saveProfileBeforeLogout();
+    
+        const { error: signOutError } = await supabase.auth.signOut();
+        if (signOutError) {
+          console.error('Error during logout:', signOutError.message);
+          throw signOutError;
+        }
+        router.push('/auth');
+        this.user = null;
+       this.task = null;
+        this.profile = null;
+    
+       
+      } catch (error) {
+        console.error('Error during logout process:', error.message);
       }
     },
 
@@ -101,7 +98,7 @@ export const useUserStore = defineStore('user', {
           return;
         }
 
-      this.profile.value = data;
+      this.profile = data;
 
     },
 
@@ -118,24 +115,20 @@ export const useUserStore = defineStore('user', {
       if (error) throw error
     },
     async updateProfile(newProfileData) {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('profiles')
         .update(newProfileData)
         .match({ user_id: this.user.id });
     
       if (error) {
         console.error('Error updating profile:', error.message);
-        return null; 
+        throw error; 
       }
-    
-      this.profile = { ...this.profile, ...newProfileData };
-    
-      return data; 
-    },
-  },
+        this.profile = newProfileData;
+    }
+},
 
-
-
+  
   persist: {
     enabled: true,
     strategies: [
@@ -147,23 +140,3 @@ export const useUserStore = defineStore('user', {
   }
 })
 
-async function saveProfileBeforeLogout(userStore) {
-  const updatedProfile = { 
-    username: userStore.profile.value.username,
-    email: userStore.profile.value.email,
-    website: userStore.profile.value.website,
-    avatar_url: userStore.profile.value.avatar_url
-  }
-
-  const { data, error } = await supabase
-    .from('profiles')
-    .update(updatedProfile)
-    .match({ user_id: userStore.user.id })
-
-  if (error) {
-    console.error('Error updating profile during logout:', error.message)
-    throw error
-  }
-  
-  return data
-}

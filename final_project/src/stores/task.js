@@ -9,13 +9,19 @@ export const useTaskStore = defineStore('tasks', {
   }),
   actions: {
     async fetchTasks() {
-      console.log(useUserStore().user)
-      const { data: tasks } = await supabase
-        .from('tasks')
-        .select('*')
-        .order('id', { ascending: false })
-        .match({ user_id: useUserStore().user.id });
-      this.tasks = tasks
+      const userStore = useUserStore();
+      if (userStore.user) {
+        const { data: tasks, error } = await supabase
+          .from('tasks')
+          .select('*')
+          .order('id', { ascending: false })
+          .match({ user_id: userStore.user.id });
+        if (error) {
+          console.error('Error fetching tasks:', error.message);
+        } else {
+          this.tasks = tasks;
+        }
+      }
     },
     async submitTask(newTaskTitle, newTaskDescription) {
       const userStore = useUserStore()
