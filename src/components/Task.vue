@@ -80,7 +80,7 @@ const incompleteTasks = computed(() => tasks.value.filter((task) => !task.is_com
 <template>
   <div class="total-box">
     <form class="form-box" @submit.prevent="newSubmitTask">
-      <img src="../assets/icons/task_icon.svg" alt="Task Icon" />
+      <img src="../assets/icons/Task_icon.svg" alt="Task Icon" />
       <h3>Do you have any new task?</h3>
       <p>{{ getCurrentDate() }}</p>
 
