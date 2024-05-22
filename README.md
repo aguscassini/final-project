@@ -9,27 +9,27 @@ PRESENTATION LINK:
 
 # BUILT WITH:
 
-.HTML5: Structure of the content, the bones.
+- HTML5: Structure of the content, the bones.
 
-.CSS3: Style and design of HTML elements
+- CSS3: Style and design of HTML elements
 
-.JAVASCRIPT: Programming language.
+- JAVASCRIPT: Programming language.
 
-.VUE 3: Our framework for building the user interface
+- VUE 3: Our framework for building the user interface
 
-.PINIA: Library that facilitates access and update of shared data between different components.
+- PINIA: Library that facilitates access and update of shared data between different components.
 
-.SUPABASE 2: Our backend for authentication and data storage.
+- SUPABASE 2: Our backend for authentication and data storage.
 
-.VISUAL STUDIO CODE: Code editor
+- VISUAL STUDIO CODE: Code editor
 
-.TABNINE: Autocompletion tool, predicts the most likely code to be written next.
+- TABNINE: Autocompletion tool, predicts the most likely code to be written next.
 
-.PRETTIER: Code formatter.
+- PRETTIER: Code formatter.
 
-.GITHUB: Platform that facilitates code management
+- GITHUB: Platform that facilitates code management
 
-.NETLIFY: Platform that allows me to manage and show my application.
+- NETLIFY: Platform that allows me to manage and show my application.
 
 
 # USER AUTHENTICATION:
