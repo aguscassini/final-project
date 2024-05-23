@@ -4,7 +4,7 @@ DESIGNED & CREATED BY: AGUSTINA CASSINI
 
 DEPLOY LINK: https://final-project-agustina.netlify.app
 
-PRESENTATION LINK:
+PRESENTATION LINK: https://docs.google.com/presentation/d/1jY0sSPve62WglVidSeTDWuP5wBKzHto5uO6Ksy4z7XQ/edit?usp=sharing
 
 
 # BUILT WITH:
@@ -15,7 +15,7 @@ PRESENTATION LINK:
 
 - JAVASCRIPT: Programming language.
 
-- VUE 3: Our framework for building the user interface
+- VUEJS 3: Our framework for building the user interface
 
 - PINIA: Library that facilitates access and update of shared data between different components.
 
