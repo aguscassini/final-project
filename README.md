@@ -31,6 +31,8 @@ PRESENTATION LINK:
 
 - NETLIFY: Platform that allows me to manage and show my application.
 
+- CHAT GPT: AI system
+
 
 # USER AUTHENTICATION:
 
@@ -71,7 +73,7 @@ It was not necessary to make many changes, but in some components, the margin si
 
 
 # DIFFICULTIES AND LEARNINGS:
-- Getting started and knowing which path to take, needed  some help to guide me.
+- Getting started and knowing which path to take.
 - Creating user profile. It was challenging to make it work and to save and update the data in Supabase, but it helped me better understand how this back and forth of data works.
 - Ensuring that the different user IDs are updated and saved
 - Reminder: It's good to use tools like the GPT chat, but its overuse can make one more confused and without understanding what is being done and how each of the elements relate. Always trust and understand the code to simplify what we are doing.
@@ -81,6 +83,7 @@ It was not necessary to make many changes, but in some components, the margin si
 - Display the profile, maybe the name or avatar, in the navbar or in the main task when I am logged in.
 - Burguer menu for responsive navigation
 - Making the tasks organise in order, maybe marking something as more important or just as something that should be done first.
+- Deigned alerts with my own style.
 
 
 
