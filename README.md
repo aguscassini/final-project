@@ -1,89 +1,72 @@
-# FINAL PROJECT 
+# FINAL PROJECT: TASK MANAGER APP
 
 DESIGNED & CREATED BY: AGUSTINA CASSINI 
 
-DEPLOY LINK: https://final-project-agustina.netlify.app
+DEPLOYMENT LINK: https://final-project-agustina.netlify.app
 
 PRESENTATION LINK: https://docs.google.com/presentation/d/1jY0sSPve62WglVidSeTDWuP5wBKzHto5uO6Ksy4z7XQ/edit?usp=sharing
 
 
+# INTRODUCTION:
+
+This project is a task management application designed to help users organize and manage their tasks efficiently. It features user authentication, task creation, editing, deletion, and profile management. 
+
 # BUILT WITH:
 
-- HTML5: Structure of the content, the bones.
-
-- CSS3: Style and design of HTML elements
-
-- JAVASCRIPT: Programming language.
-
-- VUEJS 3: Our framework for building the user interface
-
-- PINIA: Library that facilitates access and update of shared data between different components.
-
-- SUPABASE 2: Our backend for authentication and data storage.
-
-- VISUAL STUDIO CODE: Code editor
-
-- TABNINE: Autocompletion tool, predicts the most likely code to be written next.
-
-- PRETTIER: Code formatter.
-
-- GITHUB: Platform that facilitates code management
-
-- NETLIFY: Platform that allows me to manage and show my application.
-
-- CHAT GPT: AI system
+- HTML5: Provides the structure of the content.
+- CSS3: Styles and designs HTML elements.
+- JavaScript: Adds functionality and interactivity.
+- Vue.js 3: Framework for building the user interface.
+- Pinia: State management library for data sharing and updating across components.
+- Supabase 2: Backend solution for authentication and data storage.
+- Visual Studio Code: Code editor used for development.
+- Tabnine: Autocompletion tool that predicts the next segment of code.
+- Prettier: Code formatter ensuring consistent code style.
+- GitHub: Platform for code management and version control.
+- Netlify: Platform for deploying and managing the web application.
+- ChatGPT: AI system for assistance and troubleshooting during development.
 
 
-# USER AUTHENTICATION:
+# FEATURES:
 
-- SIGN UP
-The user registers with an email, password, and username, sending this data to Supabase to create a new account. Supabase creates the user and returns the information to the application, which saves it in the global state.
+- User Authentication: Sign up, sign in, and sign out functionality using Supabase.
 
-- SIGN IN
-The user enters their email and password, sending this data to Supabase for verification. If correct, Supabase returns the user's information and the application stores the information in the state managed by Pinia.
+- Task Management: Create, edit, delete tasks, and mark tasks as complete or incomplete.
 
-- LOG OUT
-The user's information is removed from the global state managed by Pinia.
-
-
-# TASK MANAGMENT:
-
-- ADD NEW TASK
-The user enters the title and description of the new task and sends a request to Supabase to add it to the database, save it, and update the global state.
-
-- EDIT TASK
-The user edits the existing task and sends a request to Supabase to update it in the database, so that the changes are then reflected in the global state.
-
-- SAVE TASK
-The changes are sent to Supabase to be saved, and the task is updated in the database, synchronizing with the global state.
-
-- DELETE TASK
-A request is sent to Supabase to delete the task from the database, and then the global state is updated.
-
-- MARK TASK AS COMPLETED OR INCOMPLETE
-Through a filter, tasks are grouped by columns depending on their status.
-
-
-# USER PROFILE:
-Creation (upon logging in) and editing of the user profile, storing the information in Supabase.
+- Profile Management: Update user profile information including username, email, website, and avatar.
 
 
 # RESPONSIVE FOR IPHONE SE:
-It was not necessary to make many changes, but in some components, the margin sizes were adjusted to ensure it looks good within a maximum width of 375px.
+
+The application is designed to be responsive, with adjustments made to ensure it looks good on devices with a maximum width of 375px, such as the iPhone SE.
 
 
 # DIFFICULTIES AND LEARNINGS:
-- Getting started and knowing which path to take.
-- Creating user profile. It was challenging to make it work and to save and update the data in Supabase, but it helped me better understand how this back and forth of data works.
-- Ensuring that the different user IDs are updated and saved
-- Reminder: It's good to use tools like the GPT chat, but its overuse can make one more confused and without understanding what is being done and how each of the elements relate. Always trust and understand the code to simplify what we are doing.
+
+- Starting Point and Direction: Deciding where to begin and how to proceed with the project.
+
+- User Profile Management: Creating, updating, and correctly saving user profiles in Supabase.
+
+- Ensuring Data Accuracy: Ensuring that user IDs and other critical data are correctly updated and saved.
+
+- Effective Tool Usage: Utilizing tools like ChatGPT without over-reliance, maintaining a clear understanding of the code and components.
 
 
 # IMPROVEMENTS FOR THE FUTURE:
-- Display the profile, maybe the name or avatar, in the navbar or in the main task when I am logged in.
-- Burguer menu for responsive navigation
-- Making the tasks organise in order, maybe marking something as more important or just as something that should be done first.
-- Deigned alerts with my own style.
+
+- Profile Display: Showing the user's profile (name or avatar) in the navbar or main task view upon logging in.
+
+- Responsive Navigation: Implementing a burger menu for better navigation on mobile devices.
+
+- Task Organization: Organizing tasks by priority or marking important tasks for improved management.
+
+- Custom Alerts: Designing and implementing custom alerts with a unique style for a better user experience.
+
+
+
+
+
+
 
 
 
